@@ -5,8 +5,6 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 const SetupPage = async () => {
-  auth().protect();
-
   const profile = await initialProfile();
   const server = await db.server.findFirst({
     where: {
