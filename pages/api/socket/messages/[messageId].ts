@@ -36,12 +36,6 @@ export default async function handler(
       });
     }
 
-    if (!content) {
-      return res.status(400).json({
-        message: "Content Missing",
-      });
-    }
-
     const server = await db.server.findFirst({
       where: {
         id: serverId as string,
