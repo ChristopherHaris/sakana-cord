@@ -21,7 +21,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -51,7 +51,7 @@ export const CreateChannelModal = () => {
   const params = useParams();
 
   const isModalOpen = isOpen && type === "createChannel";
-  const {channelType} = data;
+  const { channelType } = data;
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -60,12 +60,11 @@ export const CreateChannelModal = () => {
 
   useEffect(() => {
     if (channelType) {
-      form.setValue("type", channelType)
+      form.setValue("type", channelType);
     } else {
-      form.setValue("type", ChannelType.TEXT)
+      form.setValue("type", ChannelType.TEXT);
     }
-  }, [channelType, form])
-  
+  }, [channelType, form]);
 
   const isLoading = form.formState.isSubmitting;
 
