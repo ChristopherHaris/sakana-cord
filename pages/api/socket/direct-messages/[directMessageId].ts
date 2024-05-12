@@ -15,7 +15,7 @@ export default async function handler(
   try {
     const profile = await currentProfilePages(req);
     const { content } = req.body;
-    const { directMessageId, conversationId } = req.query;
+    const { conversationId, directMessageId } = req.query;
 
     if (!profile) {
       return res.status(401).json({
@@ -37,6 +37,8 @@ export default async function handler(
             memberOne: {
               profileId: profile.id,
             },
+          },
+          {
             memberTwo: {
               profileId: profile.id,
             },
@@ -45,14 +47,10 @@ export default async function handler(
       },
       include: {
         memberOne: {
-          include: {
-            profile: true,
-          },
+          include: { profile: true },
         },
         memberTwo: {
-          include: {
-            profile: true,
-          },
+          include: { profile: true },
         },
       },
     });
